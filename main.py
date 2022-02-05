@@ -7,7 +7,7 @@ from rgbmatrix import RGBMatrix, RGBMatrixOptions, graphics
 options = RGBMatrixOptions()
 options.rows = 32
 options.cols = 64
-options.slowdownGpio = 4
+
 
 options.hardware_mapping = 'adafruit-hat'
 
