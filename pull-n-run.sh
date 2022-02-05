@@ -1,2 +1,2 @@
 git pull origin master
-sudo python main.py
+sudo python3.9 main.py
