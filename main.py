@@ -1,7 +1,12 @@
 import time
 import sys
 
+from secret import ReadAndWrite
+from binance.client import Client
+
 from rgbmatrix import RGBMatrix, RGBMatrixOptions, graphics
+
+client = Client(ReadAndWrite['Api Key'], ReadAndWrite['Secret Key'])
 
 # options for the display
 options = RGBMatrixOptions()
@@ -29,13 +34,14 @@ def displayTicker(currency='BTC', change=-30, currentPrice=35904, fiat='$'):
     graphics.DrawText(matrix, font, 0, 26, grey, str(currentPrice)+fiat)
     if change > 0:
         graphics.DrawText(matrix, font, 28, 13, green, "▲")
-        graphics.DrawText(matrix, font, 35, 13, green, str(change)+"%")
+        graphics.DrawText(matrix, font, 35, 13, green, "+"+str(change)+"%")
     elif change < 0:
-        graphics.DrawText(matrix, font, 28, 13, green, "▼")
-        graphics.DrawText(matrix, font, 28, 13, green, "-"+str(change)+"%")
+        graphics.DrawText(matrix, font, 28, 13, red, "▼")
+        graphics.DrawText(matrix, font, 28, 13, red, str(change)+"%")
     else:
         graphics.DrawText(matrix, font, 28, 13, grey, "-")
         graphics.DrawText(matrix, font, 35, 13, grey, str(change)+"%")
+    # TODO add mini graph of 24h
 
 
 displayTicker()
