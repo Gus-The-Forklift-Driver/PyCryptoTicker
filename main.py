@@ -29,7 +29,7 @@ grey = graphics.Color(126, 126, 126)
 #matrix.Fill(20, 0, 0)
 
 
-def displayTicker(currency='BTC', change=-30, currentPrice=35904, fiat='$'):
+def displayTicker(currency='BTC', change=-30, currentPrice=35904, fiat='€'):
     graphics.DrawText(matrix, font, 0, 13, white, currency)
     graphics.DrawText(matrix, font, 0, 26, grey, str(currentPrice)+fiat)
     if change > 0:
@@ -43,8 +43,15 @@ def displayTicker(currency='BTC', change=-30, currentPrice=35904, fiat='$'):
         graphics.DrawText(matrix, font, 35, 13, grey, str(change)+"%")
     # TODO add mini graph of 24h
 
+# ask binance for a 24h rolling window ticker
 
-displayTicker()
+
+def getTicker(symbol='BTCEUR'):
+    return client.get_ticker(symbol=symbol)
+
+
+data = getTicker()
+displayTicker(change=data['priceChangePercent'], currentPrice=['lastPrice'])
 
 
 try:
