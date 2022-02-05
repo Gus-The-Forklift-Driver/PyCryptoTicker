@@ -22,7 +22,7 @@ matrix.Fill(20, 0, 0)
 
 
 def displayTicker(currency='BTC', change=20, currentPrice=35904, fiat='$'):
-    graphics.DrawText(matrix, font, 1, 1, green, currency)
+    graphics.DrawText(matrix, font, 0, 13, green, currency)
 
 
 displayTicker()
