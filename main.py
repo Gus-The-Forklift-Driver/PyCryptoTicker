@@ -57,8 +57,8 @@ def displayTicker(currency='BTC', change=-30, currentPrice=35904, fiat='€'):
 
 def wipeScreen():
     for x in range(0, 31):
-        graphics.DrawLine(matrix, x-1, 0, x-1, 0, white)
-        graphics.DrawLine(matrix, x, 0, x, 0, grey)
+        graphics.DrawLine(matrix, x-1, 0, x-1, 63, white)
+        graphics.DrawLine(matrix, x, 0, x, 63, grey)
         time.sleep(0.1)
 
 # ask binance for a 24h rolling window ticker
