@@ -3,6 +3,9 @@ import sys
 
 from secret import ReadAndWrite
 from binance.client import Client
+from itertools import cycle
+
+from settings import settings
 
 from rgbmatrix import RGBMatrix, RGBMatrixOptions, graphics
 
@@ -38,16 +41,16 @@ def displayTicker(currency='BTC', change=-30, currentPrice=35904, fiat='€'):
     graphics.DrawText(matrix, font_medium, 0, 26, grey,
                       str(round(currentPrice, 2))+fiat)
     if change > 0:
-        graphics.DrawText(matrix, font_medium, 21, 13, green, "▲")
-        graphics.DrawText(matrix, font_medium, 28, 13,
+        graphics.DrawText(matrix, font_medium, 28, 13, green, "▲")
+        graphics.DrawText(matrix, font_medium, 35, 13,
                           green, str(round(change, 2))+"%")
     elif change < 0:
-        graphics.DrawText(matrix, font_medium, 21, 13, red, "▼")
-        graphics.DrawText(matrix, font_medium, 21, 13,
+        graphics.DrawText(matrix, font_medium, 28, 13, red, "▼")
+        graphics.DrawText(matrix, font_medium, 35, 13,
                           red, abs(str(round(change, 2)))+"%")
     else:
-        graphics.DrawText(matrix, font_medium, 21, 13, grey, "-")
-        graphics.DrawText(matrix, font_medium, 28, 13, grey, '0'+"%")
+        graphics.DrawText(matrix, font_medium, 28, 13, grey, "-")
+        graphics.DrawText(matrix, font_medium, 35, 13, grey, '0%')
     # TODO add mini graph of 24h
 
 
@@ -60,10 +63,19 @@ data = getTicker()
 displayTicker(change=float(
     data['priceChangePercent']), currentPrice=float(data['lastPrice']))
 
+items = cycle(settings['24hTicker']['Pairs'])
 
 try:
     print("Press CTRL-C to stop.")
     while True:
-        time.sleep(100)
+        time.sleep(5)
+        current_ticker = next(items)
+        ticker_data = getTicker(current_ticker)
+        displayTicker(settings['24hTicker']['Pairs'][current_ticker]['ShortName'],
+                      float(ticker_data['priceChangePercent']),
+                      float(ticker_data['lastPrice']),
+                      settings['24hTicker']['Pairs'][current_ticker]['FiatSymbol'])
+
+
 except KeyboardInterrupt:
     sys.exit(0)
