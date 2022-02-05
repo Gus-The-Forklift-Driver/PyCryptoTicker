@@ -52,7 +52,7 @@ def getTicker(symbol='BTCEUR'):
 
 data = getTicker()
 displayTicker(change=float(
-    data['priceChangePercent']), currentPrice=float(['lastPrice']))
+    data['priceChangePercent']), currentPrice=float(data['lastPrice']))
 
 
 try:
