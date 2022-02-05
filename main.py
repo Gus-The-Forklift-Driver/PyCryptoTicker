@@ -59,13 +59,15 @@ def wipeScreen():
     for y in range(0, 33):
         graphics.DrawLine(matrix, 0, y-1, 63, y-1, black)
         graphics.DrawLine(matrix, 0, y, 63, y, grey)
-        time.sleep(0.1)
 
 # ask binance for a 24h rolling window ticker
 
 
 def getTicker(symbol='BTCEUR'):
-    return client.get_ticker(symbol=symbol)
+    try:
+        return client.get_ticker(symbol=symbol)
+    except:
+        return {'priceChangePercent': '0.0', 'lastPrice': '0.0'}
 
 
 data = getTicker()
