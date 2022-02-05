@@ -32,6 +32,7 @@ green = graphics.Color(0, 255, 0)
 red = graphics.Color(255, 0, 0)
 white = graphics.Color(255, 255, 255)
 grey = graphics.Color(126, 126, 126)
+black = graphics.Color(0, 0, 0)
 #graphics.DrawCircle(matrix, 15, 15, 10, green)
 #matrix.Fill(20, 0, 0)
 
@@ -54,7 +55,15 @@ def displayTicker(currency='BTC', change=-30, currentPrice=35904, fiat='€'):
     # TODO add mini graph of 24h
 
 
+def wipeScreen():
+    for x in range(0, 31):
+        graphics.DrawLine(matrix, x-1, 0, x-1, 0, white)
+        graphics.DrawLine(matrix, x, 0, x, 0, grey)
+        time.sleep(0.1)
+
 # ask binance for a 24h rolling window ticker
+
+
 def getTicker(symbol='BTCEUR'):
     return client.get_ticker(symbol=symbol)
 
@@ -75,6 +84,7 @@ try:
                       float(ticker_data['priceChangePercent']),
                       float(ticker_data['lastPrice']),
                       settings['24hTicker']['Pairs'][current_ticker]['FiatSymbol'])
+        wipeScreen()
 
 
 except KeyboardInterrupt:
