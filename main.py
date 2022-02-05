@@ -25,7 +25,7 @@ def displayTicker(currency='BTC', change=20, currentPrice=35904, fiat='$'):
     graphics.DrawText(matrix, font, 0, 13, green, currency)
     graphics.DrawText(matrix, font, 0, 26, green, str(currentPrice))
     if change > 0:
-        graphics.DrawText(matrix, font, 30, 28, green, "▲")
+        graphics.DrawText(matrix, font, 28, 13, green, "▲")
 
 
 displayTicker()
