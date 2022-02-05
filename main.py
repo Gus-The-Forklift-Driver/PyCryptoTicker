@@ -17,7 +17,9 @@ font.LoadFont("7x13.bdf")
 matrix = RGBMatrix(options=options)
 
 green = graphics.Color(0, 255, 0)
-graphics.DrawCircle(matrix, 15, 15, 10, green)
+red = graphics.Color(255, 0, 0)
+white = graphics.Color(255, 255, 255)
+#graphics.DrawCircle(matrix, 15, 15, 10, green)
 #matrix.Fill(20, 0, 0)
 
 
@@ -27,6 +29,9 @@ def displayTicker(currency='BTC', change=17, currentPrice=35904, fiat='$'):
     if change > 0:
         graphics.DrawText(matrix, font, 28, 13, green, "▲")
         graphics.DrawText(matrix, font, 28, 13, green, "+"+str(change)+"%")
+    elif change < 0:
+        graphics.DrawText(matrix, font, 28, 13, green, "▼")
+        graphics.DrawText(matrix, font, 28, 13, green, "-"+str(change)+"%")
 
 
 displayTicker()
