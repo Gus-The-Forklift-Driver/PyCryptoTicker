@@ -57,7 +57,7 @@ def displayTicker(currency='BTC', change=-30, currentPrice=35904, fiat='€'):
 
 def wipeScreen():
     for y in range(0, 32):
-        graphics.DrawLine(matrix, 0, y-1, 64, y-1, white)
+        graphics.DrawLine(matrix, 0, y-1, 64, y-1, black)
         graphics.DrawLine(matrix, 0, y, 0, y, grey)
         time.sleep(0.1)
 
@@ -77,13 +77,14 @@ items = cycle(settings['24hTicker']['Pairs'])
 try:
     print("Press CTRL-C to stop.")
     while True:
-        time.sleep(5)
+
         current_ticker = next(items)
         ticker_data = getTicker(current_ticker)
         displayTicker(settings['24hTicker']['Pairs'][current_ticker]['ShortName'],
                       float(ticker_data['priceChangePercent']),
                       float(ticker_data['lastPrice']),
                       settings['24hTicker']['Pairs'][current_ticker]['FiatSymbol'])
+        time.sleep(5)
         wipeScreen()
 
 
