@@ -59,6 +59,7 @@ def wipeScreen():
     for y in range(0, 33):
         graphics.DrawLine(matrix, 0, y-1, 63, y-1, black)
         graphics.DrawLine(matrix, 0, y, 63, y, grey)
+        time.sleep(0.05)
 
 # ask binance for a 24h rolling window ticker
 
