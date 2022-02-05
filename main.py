@@ -12,7 +12,7 @@ client = Client(ReadAndWrite['Api Key'], ReadAndWrite['Secret Key'])
 options = RGBMatrixOptions()
 options.rows = 32
 options.cols = 64
-options.gpio_slowdown = 4  # less bleeding with py 4
+options.gpio_slowdown = 3  # less bleeding with the pi 4
 options.hardware_mapping = 'adafruit-hat'
 options.brightness = 50
 
@@ -35,18 +35,17 @@ def displayTicker(currency='BTC', change=-30, currentPrice=35904, fiat='€'):
     graphics.DrawText(matrix, font, 0, 26, grey, str(currentPrice)+fiat)
     if change > 0:
         graphics.DrawText(matrix, font, 21, 13, green, "▲")
-        graphics.DrawText(matrix, font, 28, 13, green, "+"+str(change)+"%")
+        graphics.DrawText(matrix, font, 28, 13, green, str(change)+"%")
     elif change < 0:
         graphics.DrawText(matrix, font, 21, 13, red, "▼")
-        graphics.DrawText(matrix, font, 21, 13, red, str(change)+"%")
+        graphics.DrawText(matrix, font, 21, 13, red, abs(str(change))+"%")
     else:
         graphics.DrawText(matrix, font, 21, 13, grey, "-")
         graphics.DrawText(matrix, font, 28, 13, grey, str(change)+"%")
     # TODO add mini graph of 24h
 
+
 # ask binance for a 24h rolling window ticker
-
-
 def getTicker(symbol='BTCEUR'):
     return client.get_ticker(symbol=symbol)
 
