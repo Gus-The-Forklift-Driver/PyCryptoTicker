@@ -84,7 +84,7 @@ try:
                       float(ticker_data['priceChangePercent']),
                       float(ticker_data['lastPrice']),
                       settings['24hTicker']['Pairs'][current_ticker]['FiatSymbol'])
-        time.sleep(5)
+        time.sleep(20)
         wipeScreen()
 
 

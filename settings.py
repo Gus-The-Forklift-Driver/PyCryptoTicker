@@ -9,6 +9,11 @@ settings = {
             'Name': 'Etherum',
             'ShortName': 'ETH',
             'FiatSymbol': '€'
+        },
+        'XMRUSDT': {
+            'Name': 'Monero',
+            'ShortName': 'XMR',
+            'FiatSymbol': '$'
         }
     }
     }
