@@ -3,19 +3,30 @@ import sys
 
 from rgbmatrix import RGBMatrix, RGBMatrixOptions, graphics
 
-
+# options for the display
 options = RGBMatrixOptions()
 options.rows = 32
 options.cols = 64
-options.gpio_slowdown = 4
-
+options.gpio_slowdown = 4  # less bleeding with py 4
 options.hardware_mapping = 'adafruit-hat'
 
+font = graphics.Font()
+font.LoadFont("7x13.bdf")
+
+# initialize matrix
 matrix = RGBMatrix(options=options)
 
 green = graphics.Color(0, 255, 0)
 graphics.DrawCircle(matrix, 15, 15, 10, green)
-graphics.clear(matrix)
+matrix.Fill(20, 0, 0)
+
+
+def displayTicker(currency='BTC', change=20, currentPrice=35904, fiat='$'):
+    graphics.DrawText(matrix, font, 1, 1, green, currency)
+
+
+displayTicker()
+
 
 try:
     print("Press CTRL-C to stop.")
