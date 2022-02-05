@@ -18,14 +18,15 @@ matrix = RGBMatrix(options=options)
 
 green = graphics.Color(0, 255, 0)
 graphics.DrawCircle(matrix, 15, 15, 10, green)
-matrix.Fill(20, 0, 0)
+#matrix.Fill(20, 0, 0)
 
 
-def displayTicker(currency='BTC', change=20, currentPrice=35904, fiat='$'):
+def displayTicker(currency='BTC', change=17, currentPrice=35904, fiat='$'):
     graphics.DrawText(matrix, font, 0, 13, green, currency)
     graphics.DrawText(matrix, font, 0, 26, green, str(currentPrice))
     if change > 0:
         graphics.DrawText(matrix, font, 28, 13, green, "▲")
+        graphics.DrawText(matrix, font, 28, 13, green, "+"+str(change)+"%")
 
 
 displayTicker()
