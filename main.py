@@ -36,15 +36,15 @@ grey = graphics.Color(126, 126, 126)
 def displayTicker(currency='BTC', change=-30, currentPrice=35904, fiat='€'):
     graphics.DrawText(matrix, font_large, 0, 13, white, currency)
     graphics.DrawText(matrix, font_medium, 0, 26, grey,
-                      str(round(currentPrice))+fiat)
+                      str(round(currentPrice, 2))+fiat)
     if change > 0:
         graphics.DrawText(matrix, font_medium, 21, 13, green, "▲")
         graphics.DrawText(matrix, font_medium, 28, 13,
-                          green, str(round(change), 2)+"%")
+                          green, str(round(change, 2))+"%")
     elif change < 0:
         graphics.DrawText(matrix, font_medium, 21, 13, red, "▼")
         graphics.DrawText(matrix, font_medium, 21, 13,
-                          red, abs(str(round(change)))+"%")
+                          red, abs(str(round(change, 2)))+"%")
     else:
         graphics.DrawText(matrix, font_medium, 21, 13, grey, "-")
         graphics.DrawText(matrix, font_medium, 28, 13, grey, '0'+"%")
