@@ -65,10 +65,10 @@ def wipeScreen():
 
 
 def getTicker(symbol='BTCEUR'):
-    try:
-        return client.get_ticker(symbol=symbol)
-    except:
-        return {'priceChangePercent': '0.0', 'lastPrice': '0.0'}
+    # try:
+    #     return client.get_ticker(symbol=symbol)
+    # except:
+    return {'priceChangePercent': '0.0', 'lastPrice': '0.0'}
 
 
 data = getTicker()
