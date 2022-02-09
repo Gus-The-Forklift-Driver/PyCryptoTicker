@@ -7,7 +7,7 @@ options.rows = 32
 options.cols = 64
 options.gpio_slowdown = 3  # less bleeding with the pi 4
 options.hardware_mapping = 'adafruit-hat'
-options.brightness = 25
+options.brightness = 40
 
 font_medium = graphics.Font()
 font_medium.LoadFont("5x8.bdf")
@@ -27,8 +27,8 @@ black = graphics.Color(0, 0, 0)
 
 def displayTicker(currency='BTC', change=-30, currentPrice=35904, fiat='€'):
     currency = currency.upper()
-    graphics.DrawText(matrix, font_large, 4, 13, white, currency)
-    graphics.DrawText(matrix, font_medium, 4, 26, grey,
+    graphics.DrawText(matrix, font_large, 2, 13, white, currency)
+    graphics.DrawText(matrix, font_medium, 2, 26, grey,
                       str(round(currentPrice, 2))+fiat)
     if change > 0:
         graphics.DrawText(matrix, font_medium, 28, 13, green, "▲")
