@@ -1,15 +1,5 @@
-import time
-import sys
-
-from secret import ReadAndWrite
-from binance.client import Client
-from itertools import cycle
-
-from settings import settings
-
 from rgbmatrix import RGBMatrix, RGBMatrixOptions, graphics
-
-client = Client(ReadAndWrite['Api Key'], ReadAndWrite['Secret Key'])
+import time
 
 # options for the display
 options = RGBMatrixOptions()
@@ -33,8 +23,6 @@ red = graphics.Color(255, 0, 0)
 white = graphics.Color(255, 255, 255)
 grey = graphics.Color(126, 126, 126)
 black = graphics.Color(0, 0, 0)
-#graphics.DrawCircle(matrix, 15, 15, 10, green)
-#matrix.Fill(20, 0, 0)
 
 
 def displayTicker(currency='BTC', change=-30, currentPrice=35904, fiat='€'):
@@ -60,35 +48,3 @@ def wipeScreen():
         graphics.DrawLine(matrix, 0, y-1, 63, y-1, black)
         graphics.DrawLine(matrix, 0, y, 63, y, grey)
         time.sleep(0.05)
-
-
-def getTicker(symbol='BTCEUR'):
-    # ask binance for a 24h rolling window ticker
-    try:
-        return client.get_ticker(symbol=symbol)
-    except:
-        return {'priceChangePercent': '0.0', 'lastPrice': '0.0'}
-
-
-data = getTicker()
-displayTicker(change=float(
-    data['priceChangePercent']), currentPrice=float(data['lastPrice']))
-
-items = cycle(settings['24hTicker']['Pairs'])
-
-try:
-    print("Press CTRL-C to stop.")
-    while True:
-
-        current_ticker = next(items)
-        ticker_data = getTicker(current_ticker)
-        displayTicker(settings['24hTicker']['Pairs'][current_ticker]['ShortName'],
-                      float(ticker_data['priceChangePercent']),
-                      float(ticker_data['lastPrice']),
-                      settings['24hTicker']['Pairs'][current_ticker]['FiatSymbol'])
-        time.sleep(20)
-        wipeScreen()
-
-
-except KeyboardInterrupt:
-    sys.exit(0)
