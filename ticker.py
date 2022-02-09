@@ -19,13 +19,13 @@ print(currencies)
 
 currenciesNames = utils.get_names(currencies)
 
-items = cycle(settings['widgets'])
-coinData = utils.get_24h_change(currencies)
+#items = cycle(settings['widgets'])
+
 print(coinData)
 try:
     print("Press CTRL-C to stop.")
     while True:
-
+        coinData = utils.get_24h_change(currencies)
         for widget in settings['widgets']:
             if widget['type'] == 'ticker':
                 pass
@@ -33,8 +33,8 @@ try:
                 currentData = coinData[widget['name']]
                 graphics.displayTicker(
                     currency=currenciesNames[widget['name']],
-                    currentPrice=currentData['eur'],
-                    change=currentData['eur_24h_change']
+                    currentPrice=currentData[widget['vs_currency']],
+                    change=currentData[widget['vs_currency']+'_24h_change']
                 )
             time.sleep(10)
             graphics.wipeScreen()

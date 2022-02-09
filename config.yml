@@ -1,15 +1,15 @@
 widgets:
   - type: ticker
-    currency: BTC
+
     vs_currency: EUR
     name: bitcoin
 
   - type: ticker
-    currency: ETC
+
     vs_currency: EUR
     name: ethereum
 
   - type: ticker
-    currency: XMR
+
     vs_currency: EUR
     name: monero
