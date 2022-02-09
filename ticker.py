@@ -27,7 +27,6 @@ try:
     while True:
 
         for widget in settings['widgets']:
-
             if widget['type'] == 'ticker':
                 pass
                 # print(widget['name'])
@@ -37,9 +36,10 @@ try:
                     currentPrice=currentData['eur'],
                     change=currentData['eur_24h_change']
                 )
-
-                #currentWidget = next(items)
-                # print(currentWidget)
+            time.sleep(10)
+            graphics.wipeScreen()
+    #currentWidget = next(items)
+    # print(currentWidget)
 
 
 except KeyboardInterrupt:
