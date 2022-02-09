@@ -33,8 +33,9 @@ try:
                 currentData = coinData[widget['name']]
                 graphics.displayTicker(
                     currency=currenciesNames[widget['name']],
-                    currentPrice=currentData[widget['vs_currency']],
-                    change=currentData[widget['vs_currency']+'_24h_change']
+                    currentPrice=currentData[str(widget['vs_currency'])],
+                    change=currentData[str(
+                        widget['vs_currency']+'_24h_change')]
                 )
             time.sleep(10)
             graphics.wipeScreen()
