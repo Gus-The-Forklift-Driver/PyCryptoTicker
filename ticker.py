@@ -3,7 +3,6 @@ import sys
 
 from itertools import cycle
 
-from matplotlib import widgets
 
 import utils
 import graphics
