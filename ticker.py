@@ -21,7 +21,6 @@ currenciesNames = utils.get_names(currencies)
 
 #items = cycle(settings['widgets'])
 
-print(coinData)
 try:
     print("Press CTRL-C to stop.")
     while True:
